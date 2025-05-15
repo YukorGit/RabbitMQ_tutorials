@@ -18,7 +18,7 @@ $channel->basic_consume('hello', '', false, true, false, false, $callback);
 
 try {
     $channel->consume();
-} catch (Exception $exception) {
+} catch (\Throwable $exception) {
     echo $exception->getMessage();
 }
 
