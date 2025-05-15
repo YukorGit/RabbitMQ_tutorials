@@ -22,9 +22,5 @@ try {
     echo $exception->getMessage();
 }
 
-while ($channel->is_consuming()) {
-    $channel->wait();
-}
-
 $channel->close();
 $connection->close();

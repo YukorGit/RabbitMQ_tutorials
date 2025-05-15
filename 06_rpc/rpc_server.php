@@ -42,12 +42,14 @@ $callback = function ($req) use ($channel) {
     $req->ack();
 };
 
-$channel->basic_qos(null, 1, null);
+$channel->basic_qos((int)null, 1, null);
 
 $channel->basic_consume('rpc_queue', '', false, false, false, false, $callback);
 
-while ($channel->is_consuming()) {
-    $channel->wait();
+try {
+    $channel->consume();
+} catch (\Throwable $exception) {
+    echo $exception->getMessage();
 }
 
 $channel->close();

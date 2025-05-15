@@ -70,5 +70,7 @@ class FibonacciRpcClient
 }
 
 $fibonacci_rpc = new FibonacciRpcClient();
-$response = $fibonacci_rpc->call(30);
+$n = isset($argv[1]) ? intval($argv[1]) : 30;
+echo ' [x] Requesting fib(', $n, ")\n";
+$response = $fibonacci_rpc->call($n);
 echo ' [.] Got ', $response, "\n";
